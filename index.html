@@ -55,6 +55,60 @@
       color: white;
       font-size: 75%;
     }
+
+    /* 認証画面のスタイル */
+    .auth-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    
+    .auth-box {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+    
+    .auth-box h2 {
+      color: #228b22;
+      margin-bottom: 20px;
+    }
+    
+    .auth-box input {
+      padding: 10px;
+      margin: 10px;
+      border: 2px solid #228b22;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    
+    .auth-box button {
+      background-color: #228b22;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    
+    .auth-box button:hover {
+      background-color: #1a6b1a;
+    }
+    
+    .hidden {
+      display: none;
+    }
   </style>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   <meta name="keywords" content="京大,世古研,4回生,研究室">
@@ -64,63 +118,116 @@
   <meta property="og:url" content="https://miuhiro-moko.github.io/sekolab/" />
   <meta property="og:title" content="世古研4回生用サイト" />
   <meta property="og:description" content="世古研の4回生向け情報共有サイト" />
-  <!--<link rel=”icon” href="/favicon.ico">-->
-  <link rel=”icon” href="https://drive.google.com/uc?export=view&id=1vALNGlyKFS1XxpI7IiB7-y46zIc7TXsh&usp=sharing">
+  <!--<link rel="icon" href="/favicon.ico">-->
+  <link rel="icon" href="https://drive.google.com/uc?export=view&id=1vALNGlyKFS1XxpI7IiB7-y46zIc7TXsh&usp=sharing">
 </head>
 
 <body>
-<!--</?var url = ScriptApp.getService().getUrl();?>-->
-  <div class="body">
-    <div>
-      <div style="height:10px;background-color:#228b22">
-      </div>
-      <div style="height:3px;background-color:#ffffff">
-      </div>
-      <div style="height:3px;background-color:#228b22">
-      </div>
-      <div style="height:20px;background-color:#ffffff">
-      </div>
+  <!-- 認証オーバーレイ -->
+  <div id="authOverlay" class="auth-overlay">
+    <div class="auth-box">
+      <h2>🔒 世古研4回生専用</h2>
+      <p>パスワードを入力してください</p>
+      <input type="password" id="passwordInput" placeholder="パスワード" />
+      <br>
+      <button onclick="checkPassword()">ログイン</button>
+      <p id="errorMessage" style="color: red; display: none;">パスワードが間違っています</p>
     </div>
-    <header>
-      <a id="title" href = 'index.html'>世古研4回生用</a>
-    </header>
-    <div>
-      <div style="height:20px;background-color:#ffffff">
+  </div>
+
+  <!-- メインコンテンツ -->
+  <div id="mainContent" class="hidden">
+    <!--</?var url = ScriptApp.getService().getUrl();?>-->
+    <div class="body">
+      <div>
+        <div style="height:10px;background-color:#228b22">
+        </div>
+        <div style="height:3px;background-color:#ffffff">
+        </div>
+        <div style="height:3px;background-color:#228b22">
+        </div>
+        <div style="height:20px;background-color:#ffffff">
+        </div>
       </div>
-      <div style="height:40px;background-color:#31cc31">
+      <header>
+        <a id="title" href = 'index.html'>世古研4回生用</a>
+      </header>
+      <div>
+        <div style="height:20px;background-color:#ffffff">
+        </div>
+        <div style="height:40px;background-color:#31cc31">
+        </div>
       </div>
-    </div>
-    <p class="description">
-      世古研の4回生に情報共有用．<br>
-      <script src="https://kampa.me/t/pha.js"></script>
-    </p>
-    <div class="container">
-      <div class="side">
-      </div>
-      <div class="contents">
-	
+      <p class="description">
+        世古研の4回生に情報共有用．<br>
+        <script src="https://kampa.me/t/pha.js"></script>
+      </p>
+      <div class="container">
+        <div class="side">
+        </div>
+        <div class="contents">
+      
+          <ul>
+            <li><a href="全学共通科目.html">過去問解答</a></li>
+            <li><a href="専門科目.html">各種資料</a></li>
+            <li><a href="about.html">世古研について</a></li>
+            <li><a href="exam.html">院試について</a></li>
+          </ul>
+          
+          関連リンク
         <ul>
-          <li><a href="全学共通科目.html">過去問解答</a></li>
-          <li><a href="専門科目.html">各種資料</a></li>
-          <li><a href="about.html">世古研について</a></li>
-          <li><a href="exam.html">院試について</a></li>
+          <li>
+          <a href="https://www.mtl.kyoto-u.ac.jp/exam/exam.htm" target="_blank">
+            過去問
+          </a>
+          </li>
         </ul>
-		
-		関連リンク
-		<ul>
-		  <li>
-		  <a href="https://www.mtl.kyoto-u.ac.jp/exam/exam.htm" target=”_blank”>
-		    過去問
-		  </a>
-		  </li>
-		</ul>
-        
-		<br><font size="-1">更新履歴
-		<ul style="list-style: none;">
+          
+        <br><font size="-1">更新履歴
+        <ul style="list-style: none;">
         </ul></font>
-        <script src="https://kampa.me/t/parts/pha.js"></script>
+          <script src="https://kampa.me/t/parts/pha.js"></script>
+        </div>
       </div>
     </div>
   </div>
-  </body>
+
+  <script>
+    // パスワード認証
+    const correctPassword = 'seko4th'; // パスワードを変更してください
+    
+    function checkPassword() {
+      const input = document.getElementById('passwordInput');
+      const errorMessage = document.getElementById('errorMessage');
+      const authOverlay = document.getElementById('authOverlay');
+      const mainContent = document.getElementById('mainContent');
+      
+      if (input.value === correctPassword) {
+        authOverlay.style.display = 'none';
+        mainContent.classList.remove('hidden');
+        // セッションストレージに認証状態を保存
+        sessionStorage.setItem('authenticated', 'true');
+      } else {
+        errorMessage.style.display = 'block';
+        input.value = '';
+        input.focus();
+      }
+    }
+    
+    // Enterキーでログイン
+    document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        checkPassword();
+      }
+    });
+    
+    // ページ読み込み時に認証状態をチェック
+    window.onload = function() {
+      if (sessionStorage.getItem('authenticated') === 'true') {
+        document.getElementById('authOverlay').style.display = 'none';
+        document.getElementById('mainContent').classList.remove('hidden');
+      }
+    };
+  </script>
+</body>
 </html>
